@@ -2,18 +2,22 @@
 
 const
     modal = document.querySelector('.modal'),
-    showModal = document.querySelectorAll('.show-modal'),
-    closeModal = document.querySelector('.close-modal'),
-    overlay = document.querySelector('.overlay')
-
-showModal.forEach((item) => {
-    item.addEventListener('click', () => {
+    showModalButton = document.querySelectorAll('.show-modal'),
+    closeModalButton = document.querySelector('.close-modal'),
+    overlay = document.querySelector('.overlay'),
+    closeModal = () => {
+        modal.classList.add('hidden')
+        overlay.classList.add('hidden')
+    },
+    showModal = () => {
         modal.classList.remove('hidden')
         overlay.classList.remove('hidden')
-    })
+    }
+
+showModalButton.forEach((item) => {
+    item.addEventListener('click', showModal)
 })
 
-closeModal.addEventListener('click', () => {
-    modal.classList.add('hidden')
-    overlay.classList.add('hidden')
-})
+closeModalButton.addEventListener('click', closeModal)
+
+overlay.addEventListener('click', closeModal)
